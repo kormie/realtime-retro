@@ -1,0 +1,14 @@
+{
+  "author": "David Kormushoff <kormie@gmail.com>",
+  "name": "realtime-retro",
+  "description": "A tool for facilitating realtime retrospective information",
+  "version": "0.0.0",
+  "repository": {
+    "url": ""
+  },
+  "engines": {
+    "node": "~0.6.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
