@@ -8,6 +8,10 @@ app.get('/', function(request, response) {
   response.sendfile(index);
 });
 
+app.get('/app.js', function(request, response) {
+  response.sendfile(__dirname + "/public/app.js");
+});
+
 app.post('/create', function(request, response){
   var text = '';
   request.setEncoding('utf8');
