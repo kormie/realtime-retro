@@ -20,6 +20,12 @@ app.post('/create', function(request, response){
   });
   request.on('end', function(){
     var data = createPost(text);
+    var fs = require("fs");
+    fs.createWriteStream("testFile.txt", {
+          flags: "a",
+          encoding: "encoding",
+          mode: 0667
+    }).write("***new entry**\n\n" + text + "\n\n");
   });
   response.sendfile(index);
 });
