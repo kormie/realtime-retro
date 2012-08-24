@@ -2,14 +2,16 @@ var express = require("express");
 
 var app = express();
 
-var index = __dirname + "/public/index.html"
+var public_dir = __dirname + "/public/"
+
+var index = public_dir + "index.html"
 
 app.get('/', function(request, response) {
   response.sendfile(index);
 });
 
 app.get('/app.js', function(request, response) {
-  response.sendfile(__dirname + "/public/app.js");
+  response.sendfile(public_dir + "app.js");
 });
 
 app.post('/create', function(request, response){
@@ -20,18 +22,22 @@ app.post('/create', function(request, response){
   });
   request.on('end', function(){
     var data = createPost(text);
-    var fs = require("fs");
-    fs.createWriteStream("testFile.txt", {
-          flags: "a",
-          encoding: "encoding",
-          mode: 0667
-    }).write("***new entry**\n\n" + text + "\n\n");
   });
   response.sendfile(index);
 });
 
 function createPost (text) {
   console.log(text);
+  output_file(text, "test2.txt");
+}
+
+function output_file(output_text, target_file){
+  var fs = require("fs");
+  fs.createWriteStream(target_file, {
+    flags: "a",
+    encoding: "utf8",
+    mode: 0667
+  }).write("***new entry**\n\n" + output_text + "\n\n");
 }
 
 app.listen(8080);
